@@ -30,14 +30,15 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	 public Set<Categoria> obtenerCategorias() {
-        return new LinkedHashSet<>(categoriaRepository.findAll());
-    }
+	public Set<Categoria> obtenerCategorias() {
+		// TODO Auto-generated method stub
+		return  new LinkedHashSet<>(categoriaRepository.findAll());
+	}
 
 	@Override
-	public Categoria obtenerCategiaria(Long categoriaId) {
+	public Categoria obtenerCategoria(Long categoriaId) {
 		// TODO Auto-generated method stub
-		return null;
+		return categoriaRepository.findById(categoriaId).get();
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 
 	
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sistema.examenes.servicios.CategoriaService;
-import com.sistema.examenes.servicios.impl.CategoriaServiceImpl;
 import com.sistema.examenes.modelo.Categoria;
 
 

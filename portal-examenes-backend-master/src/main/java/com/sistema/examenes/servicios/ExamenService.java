@@ -1,8 +1,10 @@
 package com.sistema.examenes.servicios;
 
+import java.util.List;
 import java.util.Set;
 
 import com.sistema.examenes.modelo.Examen;
+
 
 public interface ExamenService{
 
@@ -15,6 +17,8 @@ public interface ExamenService{
 	Examen obtenerExamen(Long examenId);
 
 	void eliminarExamen(Long examenId);
+
+	List<Examen> obtenerExamenesActivos();
 
 }
 

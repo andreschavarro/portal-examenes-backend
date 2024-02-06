@@ -1,40 +1,57 @@
 package com.sistema.examenes.servicios.impl;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sistema.examenes.modelo.Categoria;
 import com.sistema.examenes.modelo.Examen;
+import com.sistema.examenes.repositorios.ExamenRepository;
 import com.sistema.examenes.servicios.ExamenService;
 
-public class ExamenServiceImpl implements ExamenService{
+@Service
+public class ExamenServiceImpl implements ExamenService {
+
+	@Autowired
+	private ExamenRepository examenRepository;
 
 	@Override
 	public Examen agregarExamen(Examen examen) {
-		// TODO Auto-generated method stub
-		return null;
+		return examenRepository.save(examen);
 	}
 
 	@Override
 	public Examen actualizarExamen(Examen examen) {
-		// TODO Auto-generated method stub
-		return null;
+		return examenRepository.save(examen);
 	}
 
 	@Override
 	public Set<Examen> obtenerExamenes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkedHashSet<>(examenRepository.findAll());
 	}
 
 	@Override
 	public Examen obtenerExamen(Long examenId) {
-		// TODO Auto-generated method stub
-		return null;
+		return examenRepository.findById(examenId).get();
 	}
 
 	@Override
 	public void eliminarExamen(Long examenId) {
-		// TODO Auto-generated method stub
-		
+		Examen examen = new Examen();
+		examen.setExamenId(examenId);
+		examenRepository.delete(examen);
 	}
-	
+
+	@Override
+	public List<Examen> obtenerExamenesActivos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
+
+
+
