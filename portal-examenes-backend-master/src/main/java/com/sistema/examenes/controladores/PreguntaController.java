@@ -67,6 +67,15 @@ public class PreguntaController {
 	    	preguntaService.eliminarPregunta(preguntaId);
 	    }
 	    
+	    @GetMapping("/examen/todos/{examenId}")
+	    public ResponseEntity<?> listarPreguntaDelExamenComoAdministrador(@PathVariable("examenId") Long examenId){
+		    Examen examen = new Examen();
+		    examen.setExamenId(examenId);
+		    Set<Pregunta> preguntas = preguntaService.obtenerPreguntasDelExamen(examen);
+		    return ResponseEntity.ok(preguntas);
+	    }
+
+	    
 	    
 	    
 	    
