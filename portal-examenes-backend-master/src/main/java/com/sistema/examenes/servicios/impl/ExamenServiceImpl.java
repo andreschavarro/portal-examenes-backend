@@ -48,9 +48,18 @@ public class ExamenServiceImpl implements ExamenService {
 	@Override
 	public List<Examen> obtenerExamenesActivos() {
 		// TODO Auto-generated method stub
-		return null;
+		return examenRepository.findByActivo(true);
 	}
 
+	@Override
+	public List<Examen> listarExamenesDeUnaCategoria(Categoria categoria) {
+		// TODO Auto-generated method stub
+		return this.examenRepository.findByCategoria(categoria);
+	}
+    @Override
+    public List<Examen> obtenerExamenesActivosDeUnaCategoria(Categoria categoria) {
+        return examenRepository.findByCategoriaAndActivo(categoria,true);
+    }
 }
 
 
