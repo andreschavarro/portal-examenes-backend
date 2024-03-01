@@ -1,8 +1,7 @@
 package com.sistema.examenes.controladores;
 
-import java.util.ArrayList;
 import java.util.*;
-import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -73,6 +72,32 @@ public class PreguntaController {
 		    examen.setExamenId(examenId);
 		    Set<Pregunta> preguntas = preguntaService.obtenerPreguntasDelExamen(examen);
 		    return ResponseEntity.ok(preguntas);
+	    }
+	    
+	    @PostMapping("/evaluar-examen")
+	    public ResponseEntity<?> evaluarExamen(@RequestBody List<Pregunta> preguntas){
+	    	double puntosMaxiomos = 0;
+	    	Integer respuestaSCorrectas = 0;
+	    	Integer intentos = 0;
+	    	
+	    	for(Pregunta p: preguntas){
+	    		Pregunta pregunta = this.preguntaService.listarPregunta(p.getPreguntaId());
+	    		if(pregunta.getRespuesta().equals(p.getRespuestaDada())) {
+	    			respuestaSCorrectas ++;
+	    			double puntos = Double.parseDouble(preguntas.get(0).getExamen().getPuntosMaximos())/preguntas.size();
+	    			puntosMaxiomos += puntos;
+	    		}
+	    		if(p.getRespuestaDada() != null) {
+	    			intentos ++;
+	    		}
+	    	}
+	    	
+	    	Map<String,Object> respuestas = new HashMap<>();
+	    	respuestas.put("puntosMaximos", puntosMaxiomos);
+	    	respuestas.put("respuestasCorrectas", respuestaSCorrectas);
+	    	respuestas.put("intentos", intentos);
+	    	return ResponseEntity.ok(respuestas);
+	    	
 	    }
 
 	    

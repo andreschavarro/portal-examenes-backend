@@ -48,7 +48,8 @@ public class PregunatServiceImpl implements PreguntaService {
         preguntaRepository.delete(pregunta);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public Pregunta listarPregunta(Long preguntaId) {
         return this.preguntaRepository.getOne(preguntaId);
     }
